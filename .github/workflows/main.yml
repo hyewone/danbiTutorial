@@ -36,6 +36,8 @@ jobs:
                   value: hyenee
                 - name: DB_HOST
                   value: database.c0u6xj9tqa4x.ap-northeast-2.rds.amazonaws.com
+                - name: DB_PASSWORD
+                  value: ${{ secrets.DB_PASSWORD }}
                 - name: DB_PORT
                   value: 5432
             context:
