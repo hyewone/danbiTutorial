@@ -1,0 +1,45 @@
+name: Deploy to cloudtype
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Connect deploy key
+        uses: cloudtype-github-actions/connect@v1
+        with:
+          token: ${{ secrets.CLOUDTYPE_TOKEN }}
+          ghtoken: ${{ secrets.CLOUDTYPE_GITACTION }}
+      - name: Deploy
+        uses: cloudtype-github-actions/deploy@v1
+        with:
+          token: ${{ secrets.CLOUDTYPE_TOKEN }}
+          project: won5854/danbi
+          stage: main
+          yaml: |
+            name: danbitutorial-be
+            app: python@3.8
+            options:
+              env:
+                - name: DJANGO_SECRET
+                  value: 5xeuu%71e@wu=#f@^xs6fp0d$adc@c7dvk@8-gfb%0r@ynpe*-
+              ports: 8000
+              start: python3 manage.py runserver 0:8000
+              buildenv:
+                - name: DB_NAME
+                  value: danbi
+                - name: DB_USER
+                  value: hyenee
+                - name: DB_HOST
+                  value: database.c0u6xj9tqa4x.ap-northeast-2.rds.amazonaws.com
+                - name: DB_PORT
+                  value: 5432
+            context:
+              git:
+                url: git@github.com:${{ github.repository }}.git
+                ref: ${{ github.ref }}
+              preset: python-django
