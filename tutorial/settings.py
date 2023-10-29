@@ -158,3 +158,13 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
     'SLIDING_TOKEN_EXP_CLAIM': 'exp',
 }
+
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+         'DRF Token': {
+               'type': 'apiKey',
+               'name': 'Authorization',
+               'in': 'header'
+         }
+      }
+   }

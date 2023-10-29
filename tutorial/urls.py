@@ -22,12 +22,6 @@ schema_view = get_schema_view(
     permission_classes=[permissions.AllowAny],
 )
 
-# router.register(r'users', views.UserViewSet)
-# router.register(r'groups', views.GroupViewSet)
-# router.register(r'tasks', views.TaskViewSet)
-
-# Wire up our API using automatic URL routing.
-# Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('v1/api/', include('wink.urls')),

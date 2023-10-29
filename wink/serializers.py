@@ -17,6 +17,7 @@ class UserSignUpSerializer(serializers.ModelSerializer):
         validators=[EmailValidator()],
         error_messages={
             'invalid': '올바른 이메일 주소를 입력하세요.',
+            'required': '이메일은 필수 입력 항목입니다.',
         }
         , required=True
     )
