@@ -93,15 +93,6 @@ class TaskView(APIView):
         
 
 class SubTaskView(APIView):
-    @swagger_auto_schema(
-        operation_id='서브 업무 조회', 
-        responses={200: SubTaskSerializer}
-    )
-    def get(self, request, subtask_id):
-        subtask_id = get_object_or_404(Task, id=subtask_id)
-        subtask_serializer = SubTaskSerializer(subtask_id)
-        return Response(subtask_serializer.data, status=status.HTTP_200_OK)
-    
 
     @swagger_auto_schema(
         operation_id='서브 업무 수정', 
@@ -197,10 +188,8 @@ class SignUpView(APIView):
         if serializer.is_valid():
             email = serializer.validated_data['email']
             password = make_password(serializer.validated_data['password'])
-            team = serializer.validated_data['team']
-            # serializer.validated_data['password'] = make_password(password)
-            # user = serializer.save()
-            user = User.objects.create_user(username=email, password=password, team=team)
+            team = serializer.validated_data['team_id']
+            user = User.objects.create_user(email=email, password=password, team=team)
 
             return Response({'user_id': user.id}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

@@ -12,7 +12,7 @@ class TeamSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class UserSignUpSerializer(serializers.ModelSerializer):
-    team = serializers.PrimaryKeyRelatedField(queryset=Team.objects.all(), required=True)
+    team_id = serializers.IntegerField(required=True)
     email = serializers.EmailField(
         validators=[EmailValidator()],
         error_messages={
@@ -31,16 +31,16 @@ class UserSignUpSerializer(serializers.ModelSerializer):
         , required=True
     )
 
-    def validate_team(self, value):
+    def validate_team_id(self, value):
         try:
             team = Team.objects.get(id=value)
         except Team.DoesNotExist:
             raise serializers.ValidationError("팀이 존재하지 않습니다.")
-        return value
+        return team
 
     class Meta:
         model = User
-        fields = ['email', 'password', 'team']
+        fields = ['email', 'password', 'team', 'team_id']
         extra_kwargs = {
             'email': {
                 'validators': [UniqueValidator(queryset=User.objects.all())],
