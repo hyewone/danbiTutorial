@@ -29,8 +29,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['port-0-danbitutorial-be-euegqv2llo6uapzm.sel5.cloudtype.app', 'localhost']
 
+CORS_ALLOW_ALL_ORIGINS = False  # 또는 필요에 따라 True로 설정
+CORS_ALLOW_CREDENTIALS = True  # 필요에 따라 설정
 
-# Application definition
+CORS_ALLOWED_ORIGINS = [
+    "https://port-0-danbitutorial-be-euegqv2llo6uapzm.sel5.cloudtype.app/",  
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -42,6 +46,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'wink',
     'drf_yasg',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -52,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'tutorial.urls'
