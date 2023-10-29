@@ -34,7 +34,8 @@ CORS_ALLOW_CREDENTIALS = True   # 필요에 따라 설정
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8000",
-    "https://port-0-danbitutorial-be-euegqv2llo6uapzm.sel5.cloudtype.app",  
+    "https://port-0-danbitutorial-be-euegqv2llo6uapzm.sel5.cloudtype.app", 
+    "http://port-0-danbitutorial-be-euegqv2llo6uapzm.sel5.cloudtype.app",  
 ]
 
 CORS_ALLOW_METHODS = [
